@@ -151,46 +151,96 @@
 </section>	
 			
 <?php include_once("footer.php");?>
+
 <script>
 angular.module("shop", []).controller("destaque-controller", function($scope, $http){
-	$scope.produtos = [];
 
+	$scope.produtos = [];
+	/* 
+	//Descomentar as linhas 159 a 186, e também a 196, e comentar as linhas 219 a 239.
+	//Toda vez que eu coloco o inicializador do carrossel dentro de uma function ele acaba não funcionando.
 	var initCarousel = function(){
-			$("#destaque-produtos").owlCarousel({
-				autoplayTimeout: 5000,
-				items: 1,
-				singleItem: true,
-				dots: false
-			});
+
+		$("#destaque-produtos").owlCarousel({
+
+			autoPlay: 5000,
+			items : 1,
+			singleItem: true,
+			pagination: false
+			
+		});
 
 		var owlDestaque = $('#destaque-produtos');
-		owlDestaque.owlCarousel();
+			owlDestaque.owlCarousel();
 			// Go to the next item
-			$('#btn-destaque-next').click(function() {
-				owlDestaque.trigger('next.owl.carousel',[300]);
+			$('#btn-destaque-prev').click(function() {
+				owlDestaque.trigger('owl.prev');
 			})
 			// Go to the previous item
-			$('#btn-destaque-prev').click(function() {
+			$('#btn-destaque-next').click(function() {
 				// With optional speed parameter
 				// Parameters has to be in square bracket '[]'
-				owlDestaque.trigger('prev.owl.carousel',[300]);
-		})
-	} /*Fechamento do Init*/
+				owlDestaque.trigger('owl.next', [300]);
+			})
 
-	// Simple GET request example:
-	$http({
-		method: 'GET',
-		url: 'produtos'
-		}).then(function successCallback(response) {
-			$scope.produtos = response.data;
+	};
+	*/
 
-			setTimeout(initCarousel, 3000);
+$http({
+	  method: 'GET',
+	  url: 'produtos'
+	}).then(function successCallback(response) {
 
-		}, function errorCallback(response) {
-			// called asynchronously if an error occurs
-			// or server returns response with an error status.
-		});
-	/*
+	    $scope.produtos = response.data;
+
+	    //setTimeout(initCarousel, 1000);
+
+	  }, function errorCallback(response) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
+
+});
+$(function(){
+
+  	$('.estrelas').each(function(){
+
+  		$(this).raty({
+	  		starHalf    : 'lib/raty/lib/images/star-half.png',                                // The name of the half star image.
+			starOff     : 'lib/raty/lib/images/star-off.png',                                 // Name of the star image off.
+			starOn      : 'lib/raty/lib/images/star-on.png',
+			score		: parseFloat($(this).data("score"))
+	  	});
+
+  	});
+
+});
+</script>
+<script>
+	$("#destaque-produtos").owlCarousel({
+		autoPlay: 5000,
+		items : 1,
+		singleItem: true,
+		pagination: false
+	});
+
+	var owlDestaque = $('#destaque-produtos');
+		owlDestaque.owlCarousel();
+	// Go to the next item
+	$('#btn-destaque-prev').click(function() {
+		owlDestaque.trigger('owl.prev');
+	})
+	// Go to the previous item
+	$('#btn-destaque-next').click(function() {
+		// With optional speed parameter
+		// Parameters has to be in square bracket '[]'
+		owlDestaque.trigger('owl.next', [300]);
+	})
+</script>
+
+<!--	Este é o meu código estático; com ele, o carrossel fica bagunçado:
+<script>
+
 	$scope.produtos.push({
 		nome_prod_longo:"Smartphone Motorola Moto X Play Dual Chip Desbloqueado Android 5.1",
 		foto_principal:"moto-x.png",
@@ -210,42 +260,6 @@ angular.module("shop", []).controller("destaque-controller", function($scope, $h
 		parcela:"529,00",
 		total:"5.299,00"
 	});
-	*/
 
-});
 </script>
-<script>
-$(function(){
-	$('.estrelas').each(function(){
-			$(this).raty({
-			starHalf	: 'lib/raty/lib/images/star-half.png',
-			starOff		: 'lib/raty/lib/images/star-off.png',
-			starOn		: 'lib/raty/lib/images/star-on.png',
-			score		: parseFloat($(this).data("score"))
-		});
-	});
-});
-</script>
-<script>
-/*
-$("#destaque-produtos").owlCarousel({
-	autoplayTimeout: 5000,
-	items: 1,
-	singleItem: true,
-	dots: false
-});
-
-var owlDestaque = $('#destaque-produtos');
-owlDestaque.owlCarousel();
-	// Go to the next item
-	$('#btn-destaque-next').click(function() {
-		owlDestaque.trigger('next.owl.carousel',[300]);
-	})
-	// Go to the previous item
-	$('#btn-destaque-prev').click(function() {
-		// With optional speed parameter
-		// Parameters has to be in square bracket '[]'
-		owlDestaque.trigger('prev.owl.carousel',[300]);
-})
-*/
-</script>
+-->

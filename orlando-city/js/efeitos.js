@@ -13,7 +13,7 @@ $(document).ready(function(){
     $(".thumbnails").owlCarousel({
         loop:true,
         margin: 10,
-        dots: false,
+        pagination: false,
         //nav:false,
         //navText: ["Anterior","Próximo"],
         responsive: {
@@ -28,18 +28,34 @@ $(document).ready(function(){
             },
         }
     });
+
     var owl = $('.owl-carousel');
-    owl.owlCarousel();
-    // Go to the next item
-    $('#btn-news-next').click(function() {
-        owl.trigger('next.owl.carousel');
+        owl.owlCarousel();
+        // Go to the next item
+        $('#btn-news-prev').click(function() {
+            owl.trigger('owl.prev');
+        })
+        // Go to the previous item
+        $('#btn-news-next').click(function() {
+            // With optional speed parameter
+            // Parameters has to be in square bracket '[]'
+            owl.trigger('owl.next', [300]);
     })
-    // Go to the previous item
-    $('#btn-news-prev').click(function() {
-    // With optional speed parameter
-    // Parameters has to be in square bracket '[]'
-    owl.trigger('prev.owl.carousel', [300]);
-})
+
+    /*
+    var owl = $('.owl-carousel');
+        owl.owlCarousel();
+        // Go to the next item
+        $('#btn-news-next').click(function() {
+            owl.trigger('next.owl.carousel');
+        })
+        // Go to the previous item
+        $('#btn-news-prev').click(function() {
+        // With optional speed parameter
+        // Parameters has to be in square bracket '[]'
+        owl.trigger('prev.owl.carousel', [300]);
+    })
+    */
 
     $("#page-up").on("click", function(event){
 

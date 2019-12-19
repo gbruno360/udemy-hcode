@@ -6,12 +6,12 @@
 		<title>Orlando City</title>
 		<script src="lib/angularjs/angular.min.js"></script>
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
-
+		<!--
 		<link rel="stylesheet" href="lib/owl.carousel2/dist/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="lib/owl.carousel2/dist/assets/owl.theme.default.css">
-		<!--
-		<link rel="stylesheet" href="lib/owl.carousel/owl-carousel/owl.carousel.css">
 		-->
+		<link rel="stylesheet" href="lib/owl.carousel/owl-carousel/owl.carousel.css">
+		<link rel="stylesheet" href="lib/owl.carousel/owl-carousel/owl.theme.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 		<link rel="stylesheet" href="lib/raty/lib/jquery.raty.css">
 		<link rel="stylesheet" href="css/orlando.css">
