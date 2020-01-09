@@ -1,8 +1,8 @@
 <?php include_once("header.php");?>
 
-<section>							
+<section ng-controller="destaque-controller">							
 
-	<div class="container" id="destaque-produtos-container" ng-controller="destaque-controller">
+	<div class="container" id="destaque-produtos-container">
 	
 		<div id="destaque-produtos" class="owl-carousel owl-theme"> <!--class="owl-carousel owl-theme"-->
 			<div class="item" ng-repeat="produto in produtos">
@@ -98,48 +98,12 @@
 			<hr>
 		</div>
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3" ng-repeat="produto in buscados">
 				<div class="box-produto-info">
 					<a href="#">
 						<img src="img/produtos/panelas.png" alt="Panelas">
 						<h3>Conjunto de Panelas Tramontina Versalhes Alumínio Antiaderente 5</h3>
 						<div class="estrelas" data-score="3"></div> <!--CONFIGURAR RATY AULA 67 Home da Loja Parte 3-->
-						<div class="text-qtd-reviews arial-cinza-sp">(300)</div>
-						<div class="text-valor text-roxo">R$ 109,90</div>
-						<div class="text-parcelado arial-cinza-sp">10x de R$ 10,99 sem juros</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="box-produto-info">
-					<a href="#">
-						<img src="img/produtos/panelas.png" alt="Panelas">
-						<h3>Conjunto de Panelas Tramontina Versalhes Alumínio Antiaderente 5</h3>
-						<div class="estrelas" data-score="1"></div> <!--CONFIGURAR RATY AULA 67 Home da Loja Parte 3-->
-						<div class="text-qtd-reviews arial-cinza-sp">(300)</div>
-						<div class="text-valor text-roxo">R$ 109,90</div>
-						<div class="text-parcelado arial-cinza-sp">10x de R$ 10,99 sem juros</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="box-produto-info">
-					<a href="#">
-						<img src="img/produtos/panelas.png" alt="Panelas">
-						<h3>Conjunto de Panelas Tramontina Versalhes Alumínio Antiaderente 5</h3>
-						<div class="estrelas" data-score="3.5"></div> <!--CONFIGURAR RATY AULA 67 Home da Loja Parte 3-->
-						<div class="text-qtd-reviews arial-cinza-sp">(300)</div>
-						<div class="text-valor text-roxo">R$ 109,90</div>
-						<div class="text-parcelado arial-cinza-sp">10x de R$ 10,99 sem juros</div>
-					</a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="box-produto-info">
-					<a href="#">
-						<img src="img/produtos/panelas.png" alt="Panelas">
-						<h3>Conjunto de Panelas Tramontina Versalhes Alumínio Antiaderente 5</h3>
-						<div class="estrelas" data-score="5"></div> <!--CONFIGURAR RATY AULA 67 Home da Loja Parte 3-->
 						<div class="text-qtd-reviews arial-cinza-sp">(300)</div>
 						<div class="text-valor text-roxo">R$ 109,90</div>
 						<div class="text-parcelado arial-cinza-sp">10x de R$ 10,99 sem juros</div>
@@ -156,13 +120,10 @@
 angular.module("shop", []).controller("destaque-controller", function($scope, $http){
 
 	$scope.produtos = [];
-	/* 
-	//Descomentar as linhas 159 a 186, e também a 196, e comentar as linhas 219 a 239.
-	//Toda vez que eu coloco o inicializador do carrossel dentro de uma function ele acaba não funcionando.
+
 	var initCarousel = function(){
 
 		$("#destaque-produtos").owlCarousel({
-
 			autoPlay: 5000,
 			items : 1,
 			singleItem: true,
@@ -182,9 +143,7 @@ angular.module("shop", []).controller("destaque-controller", function($scope, $h
 				// Parameters has to be in square bracket '[]'
 				owlDestaque.trigger('owl.next', [300]);
 			})
-
 	};
-	*/
 
 $http({
 	  method: 'GET',
@@ -193,7 +152,7 @@ $http({
 
 	    $scope.produtos = response.data;
 
-	    //setTimeout(initCarousel, 1000);
+	    setTimeout(initCarousel, 1000);
 
 	  }, function errorCallback(response) {
 	    // called asynchronously if an error occurs
@@ -216,50 +175,3 @@ $(function(){
 
 });
 </script>
-<script>
-	$("#destaque-produtos").owlCarousel({
-		autoPlay: 5000,
-		items : 1,
-		singleItem: true,
-		pagination: false
-	});
-
-	var owlDestaque = $('#destaque-produtos');
-		owlDestaque.owlCarousel();
-	// Go to the next item
-	$('#btn-destaque-prev').click(function() {
-		owlDestaque.trigger('owl.prev');
-	})
-	// Go to the previous item
-	$('#btn-destaque-next').click(function() {
-		// With optional speed parameter
-		// Parameters has to be in square bracket '[]'
-		owlDestaque.trigger('owl.next', [300]);
-	})
-</script>
-
-<!--	Este é o meu código estático; com ele, o carrossel fica bagunçado:
-<script>
-
-	$scope.produtos.push({
-		nome_prod_longo:"Smartphone Motorola Moto X Play Dual Chip Desbloqueado Android 5.1",
-		foto_principal:"moto-x.png",
-		preco:"1.259",
-		centavos:"10",
-		parcelas:8,
-		parcela:"174,88",
-		total:"1.399,00"
-	});
-	
-	$scope.produtos.push({
-		nome_prod_longo:"iPhone X Pro de 256 GB – Dual Chip - Apple (BR)",
-		foto_principal:"iphone.webp",
-		preco:"5.299",
-		centavos:"00",
-		parcelas:10,
-		parcela:"529,00",
-		total:"5.299,00"
-	});
-
-</script>
--->

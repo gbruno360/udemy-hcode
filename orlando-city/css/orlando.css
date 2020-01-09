@@ -16,7 +16,6 @@ header .header-black {
 	height: 40px;
 	background-color: #000;
 }
-
 header .header-black li {
 	background-image: url(../img/clubs.png);
 	background-repeat: no-repeat;
